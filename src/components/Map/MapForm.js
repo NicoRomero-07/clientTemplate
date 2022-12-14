@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
-import { getCoords, getNearbyBuses } from "../../api/FetchOpenData";
+import { getCoords} from "../../api/FetchOpenData";
 import { getHouseholdNearbyByCoords } from "../../api/FetchHouseholdData";
 import { useState } from "react";
 import { useInterval } from "../../hooks/useInterval";

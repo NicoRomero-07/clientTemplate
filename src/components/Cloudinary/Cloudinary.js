@@ -51,7 +51,7 @@ export const CloudinaryImage = () => {
   // Render the transformed image in a React component.
   return (
     <div>
-      <Image cldImg={myImage} />
+      <Image cldimg={myImage} />
     </div>
   )
 };

@@ -1,12 +1,12 @@
-import { MapForm } from "./MapForm";
-import { ClimateInfo } from "./ClimateInfo";
+//import { MapForm } from "./MapForm";
+//import { ClimateInfo } from "./ClimateInfo";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet";
-import Container from "react-bootstrap/Container";
+//import Container from "react-bootstrap/Container";
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import { LayersControl, LayerGroup } from "react-leaflet";
+//import { LayersControl, LayerGroup } from "react-leaflet";
 
 const MyMap = ({ position }) => {
   const map = useMap();
@@ -24,8 +24,8 @@ export const Map = () => {
     lng: 2.1734,
   });
 
-  const [markers, setMarkers] = useState([]);
-  const forecastPanelPosition = "leaflet-control leaflet-bottom leaflet-left";
+  //const [markers, setMarkers] = useState([]);
+  //const forecastPanelPosition = "leaflet-control leaflet-bottom leaflet-left";
 
   return (
     <>
