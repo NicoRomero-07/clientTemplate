@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8002";
+const BASE_URL = "http://3.127.55.81:8002";
 
 const getDataNearbyByCoords = async (lat, lon, radius) => {
   

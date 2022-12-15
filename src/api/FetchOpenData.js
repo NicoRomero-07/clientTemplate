@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8003";
+const API_BASE_URL = "http://3.127.55.81:8003";
 
 const getBusByID = async (id) => {
   const res = await fetch(`http://localhost:8000/buses/${id}`);
