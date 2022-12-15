@@ -17,6 +17,10 @@ import "./App.css";
 import initFontAwesome from "./utils/initFontAwesome";
 import { MapPage } from "./pages/Map";
 
+import Create from "./pages/Create";
+import { ReadData } from "./components/Crud/ReadData";
+import Edit from "./pages/Edit";
+
 initFontAwesome();
 
 const App = () => {
@@ -39,7 +43,10 @@ const App = () => {
             <Route path="/" element={<Home/>} />
             <Route path="/map" element={<MapPage/>} />
             <Route path="/img" element={<Images/>} />
+            <Route path="/create" element={<Create/>} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/template/:id" element={<ReadData />} />
+            <Route path="/template/edit/:id" element={<Edit />} />
           </Routes>
         </Container>
       </div>

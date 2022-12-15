@@ -1,20 +1,67 @@
-import { ButtonGroup, Card, Col } from 'react-bootstrap';
+import { ButtonGroup, Card, Col,Image, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { deleteDataById } from '../../api/FetchDB';
 
-export const CardComponent = ({url,text,time}) => {
+export const CardComponent = ({element,username}) => {
+
+    const {
+        isAuthenticated,
+      } = useAuth0();
+
+    function Editar(){
+        if(isAuthenticated){
+            return <Link to={`/template/edit/${element.id}`}><button type="button" className="btn btn-md btn-success">Editar</button></Link>
+        }
+        return null;
+    }
+
+    function refreshPage() {
+        window.location.reload(false);
+      }
+
+    async function eliminarHandler(){
+        console.log("Eliminar");
+        await deleteDataById(element.id);
+        refreshPage();
+    }
+    function Eliminar(){
+        if(isAuthenticated){
+            return <Button onClick={eliminarHandler} className='btn btn-md btn-danger'>Eliminar</Button>
+        }
+        return null;
+    }
+
     return (
         <Col>
             <Card>
-                <img src={url} alt="Imagen de vivienda" fill="currentColor" viewBox="0 0 16 16"/>
+           {/*  <Carousel>
+                    {element.photo.map((photo) => (
+                    <Carousel.Item key={photo}>
+                        <Image src={image}
+                            style={{
+                                height: "300px"
+                            }}
+                        ></Image>
+                    </Carousel.Item>
+                    ))}
+                      
+                </Carousel> */}
+                <Image src={element.image}
+                    style={{
+                        height: "300px"
+                    }}
+                ></Image>
                 <Card.Body>
-                    <Card.Text>{text}</Card.Text>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <ButtonGroup>
-                            <a href='/household'><button type="button" className="btn btn-sm btn-primary">View</button></a>
-                            <a href='/household'><button type="button" className="btn btn-sm btn-success">Edit</button></a>
-                            <button type="button" className="btn btn-sm btn-danger">Delete</button>
+                    <Card.Title>{element.name}</Card.Title>
+                    <Card.Text className='p-2 mb-4'>{element.description}</Card.Text>
+
+                    <ButtonGroup>
+                            <Link to={`/template/${element.id}`}><button type="button" className="btn btn-md btn-primary">Mostrar</button></Link>
+                            {Editar()}
+                            {Eliminar()}
+                            
                         </ButtonGroup>
-                        <div class="text-muted">{time}</div>
-                    </div>
                 </Card.Body>
             </Card>
         </Col>

@@ -67,7 +67,14 @@ const NavBar = () => {
                   Images
                 </NavLink>
               </NavItem>
-               
+              <NavItem>
+                <NavLink
+                  tag={RouterNavLink}
+                  to="/create"
+                >
+                  Create
+                </NavLink>
+              </NavItem>
             </Nav>
             <Nav className="d-none d-md-block" navbar>
               {!isAuthenticated && (
