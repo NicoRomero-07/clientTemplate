@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 
 import Highlight from "../components/Highlight";
 import {Spinner} from "../components/Spinner/Spinner";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useState } from "react";
 
 export const ProfileComponent = () => {
-  const { user } = useAuth0();
+  const { user,getAccessTokenSilently } = useAuth0();
+
+  const [accessToken, setAccessToken] = useState("");
+
+  useEffect(() => {
+    async function getAccessToken() {
+      try {
+        const token = await getAccessTokenSilently();
+        setAccessToken(token);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    getAccessToken();
+  }, [getAccessTokenSilently]);
 
   return (
     <Container className="mb-5">
@@ -25,6 +40,9 @@ export const ProfileComponent = () => {
       </Row>
       <Row>
         <Highlight>{JSON.stringify(user, null, 2)}</Highlight>
+      </Row>
+      <Row>
+        <Highlight>{JSON.stringify(accessToken, null, 2)}</Highlight>
       </Row>
     </Container>
   );
