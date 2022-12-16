@@ -1,6 +1,4 @@
-//const BASE_URL = "http://3.127.55.81:8002";
-//const BASE_URL = "http://localhost:8002";
-const BASE_URL = "https://server-template-api.fly.dev/";
+const API_BASE_URL = "http://3.127.55.81:8003";
 
 const getBusByID = async (id) => {
   const res = await fetch(`http://localhost:8000/buses/${id}`);
