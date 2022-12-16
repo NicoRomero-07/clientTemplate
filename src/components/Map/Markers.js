@@ -9,7 +9,7 @@ export const MarkersComponent = ({ requestData }) => {
         {requestData.map((element,idx) => (
             <Marker
             key={idx}
-            position={[element.lat, element.geojson.lon]}
+            position={[element.lat, element.lon]}
             icon={iconPerson}
             >
             {/* <Popup>
