@@ -1,6 +1,6 @@
 //const BASE_URL = "http://3.127.55.81:8002";
 //const BASE_URL = "http://localhost:8002";
-const BASE_URL = "https://server-template-api.fly.dev/";
+const BASE_URL = "https://server-template-api.fly.dev";
 
 const getDataNearbyByCoords = async (lat, lon, radius) => {
   
