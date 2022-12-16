@@ -19,13 +19,19 @@ const MyMap = ({ position }) => {
   return null;
 };
 
-export const Map = () => {
+  
+
+  export const Map = () => {
   const [position, setPosition] = useState({
-    lat: 36,
-    lng: -4,
+    lat: 36.71944,
+    lng: -4.42,
   });
 
+  
+  
   const [markers, setMarkers] = useState([]);
+  const [markers1, setMarkers1] = useState([]);
+  const [markers2, setMarkers2] = useState([]);
   //const forecastPanelPosition = "leaflet-control leaflet-bottom leaflet-left";
 
   return (
@@ -52,6 +58,16 @@ export const Map = () => {
                     <MarkersComponent requestData={markers} />
                   )}
                 </LayerGroup>
+                <LayerGroup>
+                  {markers1 && (
+                    <MarkersComponent requestData={markers1} />
+                  )}
+                </LayerGroup>
+                <LayerGroup>
+                  {markers2 && (
+                    <MarkersComponent requestData={markers2} />
+                  )}
+                </LayerGroup>
               </LayersControl.Overlay>
 
             </LayersControl>
@@ -64,6 +80,8 @@ export const Map = () => {
          <MapForm
             setPosition={setPosition}
             setMarkers={setMarkers}
+            setMarkers1={setMarkers1}
+            setMarkers2={setMarkers2}
           />
         </div>
     </>

@@ -1,6 +1,6 @@
 //const BASE_URL = "http://3.127.55.81:8002";
-//const BASE_URL = "http://localhost:8002";
-const BASE_URL = "https://server-parada-api.fly.dev";
+const BASE_URL = "http://localhost:8002";
+//const BASE_URL = "https://server-parada-api.fly.dev";
 
 const getDataNearbyByCoords = async (lat, lon, radius) => {
   
@@ -62,8 +62,18 @@ const updateDataById = async (id, data) => {
 };
 
 const getParadasByCodLineaAndSentido = async (codLinea, sentido) => {
-  const res = await fetch(`${BASE_URL}/parada/search/codLinea?codLinea=${codLinea}?sentido=${sentido}`);
+  const res = await fetch(`${BASE_URL}/parada/search/codLinea?codLinea=${codLinea}&sentido=${sentido}`);
   return res.json();
 };
 
-export { getDataNearbyByCoords, postData, getData, getDataById, deleteDataById, updateDataById, getParadasByCodLineaAndSentido };
+const getParadasByNombre = async (nombre) => {
+  const res = await fetch(`${BASE_URL}/parada/search/nombreLinea?nombreLinea=${nombre}`);
+  return res.json();
+};
+
+const getNearParadas = async (lat, lon) => {
+  const res = await fetch(`${BASE_URL}/parada/search/near?lat=${lat}&lon=${lon}`);
+  return res.json();
+};
+
+export { getNearParadas, getDataNearbyByCoords, getParadasByCodLineaAndSentido, getParadasByNombre,postData, getData, getDataById, deleteDataById, updateDataById };
