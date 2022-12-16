@@ -5,14 +5,15 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 import { getCoords} from "../../api/FetchOpenData";
 import { getDataNearbyByCoords } from "../../api/FetchDB";
+import { getParadasByCodLinea } from "../../api/FetchDB";
 import { useState } from "react";
 import { useInterval } from "../../hooks/useInterval";
 
 export const MapForm = ({ setPosition, setMarkers }) => {
 
   const [formData, setFormData] = useState({
-    addressInput: "",
-    radius: 500,
+    parada: 1,
+    sentido: 1,
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -29,12 +30,12 @@ export const MapForm = ({ setPosition, setMarkers }) => {
     event.preventDefault();
     setIsLoading(true);
     // TODO: Fetch household given the form data (address, startDate, endDate, radius (default to 500m))
-    const {lat,  lon} = await getCoords(formData.addressInput)
-    setPosition({ lat: lat, lng: lon });;
+    //const {lat,  lon} = await getCoords(formData.parada)
+    const paradas = await getParadasByCodLineaAndSentido(formData.parada, formData.sentido);
+    //setPosition({ lat: lat, lng: lon });;
     
-    const data = await getDataNearbyByCoords(lat, lon, formData.radius);
-    console.log(data)
-    setMarkers(data);
+    console.log(paradas)
+    setMarkers(paradas);
     setIsLoading(false);
   };
 
@@ -60,16 +61,27 @@ export const MapForm = ({ setPosition, setMarkers }) => {
     <Form onSubmit={submitHandler}>
       <Row>
         <Form.Group className="mb-4" controlId="formAddress">
-          <Form.Label>Dirección</Form.Label>
+          <Form.Label>Cod Parada</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Introduzca una dirección"
-            name="addressInput"
+            placeholder="Introduzca un codigo de parada"
+            name="parada"
             onChange={updateFormData}
           />
         </Form.Group>
       </Row>
       <Row>
+        <Form.Group className="mb-4" controlId="formAddress">
+          <Form.Label>Sentido</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Introduzca un sentido"
+            name="sentido"
+            onChange={updateFormData}
+          />
+        </Form.Group>
+      </Row>
+     {/*  <Row>
         <Form.Label>Radio de búsqueda</Form.Label>
         <ButtonGroup className="mb-2" name="radius" onClick={updateFormData}>
           <Button variant="primary" name="radius" value={500}>
@@ -79,7 +91,7 @@ export const MapForm = ({ setPosition, setMarkers }) => {
             1000m
           </Button>
         </ButtonGroup>
-      </Row>
+      </Row> */}
       <Row className="mt-4">
         <Button className="mt-5 ms-3 w-25 h-25" variant="primary" type="submit">
           {isLoading ? spinner() : "Submit"}

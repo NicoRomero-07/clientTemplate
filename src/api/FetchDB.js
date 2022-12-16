@@ -1,15 +1,15 @@
 //const BASE_URL = "http://3.127.55.81:8002";
 //const BASE_URL = "http://localhost:8002";
-const BASE_URL = "https://server-template-api.fly.dev";
+const BASE_URL = "https://server-parada-api.fly.dev";
 
 const getDataNearbyByCoords = async (lat, lon, radius) => {
   
-  const res = await fetch(`${BASE_URL}/template/search/nearby?lat=${lat}&lon=${lon}&radius=${radius}`);
+  const res = await fetch(`${BASE_URL}/parada/search/nearby?lat=${lat}&lon=${lon}&radius=${radius}`);
   return res.json();
 };
 
 const postData = async (data) => {
-  const res = await fetch(`${BASE_URL}/template/`, {
+  const res = await fetch(`${BASE_URL}/parada/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,12 +20,12 @@ const postData = async (data) => {
 };
 
 const getData = async () => {
-  const res = await fetch(`${BASE_URL}/template/`);
+  const res = await fetch(`${BASE_URL}/parada/`);
   return res.json();
 };
 
 const getDataById = async (id) => {
-  const res = await fetch(`${BASE_URL}/template/${id}`,
+  const res = await fetch(`${BASE_URL}/parada/${id}`,
   {
     method: "GET",
     headers: {
@@ -37,7 +37,7 @@ const getDataById = async (id) => {
 };
 
 const deleteDataById = async (id) => {
-  const res = await fetch(`${BASE_URL}/template/${id}`,
+  const res = await fetch(`${BASE_URL}/parada/${id}`,
   {
     method: "DELETE",
     headers: {
@@ -49,7 +49,7 @@ const deleteDataById = async (id) => {
 };
 
 const updateDataById = async (id, data) => {
-  const res = await fetch(`${BASE_URL}/template/${id}`,
+  const res = await fetch(`${BASE_URL}/parada/${id}`,
   {
     method: "PUT",
     headers: {
@@ -61,4 +61,9 @@ const updateDataById = async (id, data) => {
   return res.json();
 };
 
-export { getDataNearbyByCoords, postData, getData, getDataById, deleteDataById, updateDataById };
+const getParadasByCodLineaAndSentido = async (codLinea, sentido) => {
+  const res = await fetch(`${BASE_URL}/parada/search/codLinea?codLinea=${codLinea}?sentido=${sentido}`);
+  return res.json();
+};
+
+export { getDataNearbyByCoords, postData, getData, getDataById, deleteDataById, updateDataById, getParadasByCodLineaAndSentido };

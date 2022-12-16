@@ -30,6 +30,10 @@ const NavBar = () => {
   } = useAuth0();
   const toggle = () => setIsOpen(!isOpen);
 
+  const login = () =>{
+    loginWithRedirect();
+    console.log(user);
+  } 
   const logoutWithRedirect = () =>
     logout({
       returnTo: window.location.origin,
@@ -83,7 +87,8 @@ const NavBar = () => {
                     id="qsLoginBtn"
                     color="primary"
                     className="btn-margin"
-                    onClick={() => loginWithRedirect()}
+                    onClick={login}
+                    //onClick={() => loginWithRedirect()}
                   >
                     Log in
                   </Button>

@@ -21,8 +21,8 @@ const MyMap = ({ position }) => {
 
 export const Map = () => {
   const [position, setPosition] = useState({
-    lat: 41.3851,
-    lng: 2.1734,
+    lat: 36,
+    lng: -4,
   });
 
   const [markers, setMarkers] = useState([]);
